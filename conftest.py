@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 import pytest
 from pages.sale import Sale
 from pages.eco_friendly import EcoFriendlySorting
@@ -7,6 +8,8 @@ from pages.create_account import AccountCreation
 
 @pytest.fixture()
 def driver():
+    options = Options()
+    options.add_argument('--headless')
     chrome_driver = webdriver.Chrome()
     return chrome_driver
 
@@ -24,4 +27,3 @@ def login_page(driver):
 @pytest.fixture()
 def ecofriendly_page(driver):
     return EcoFriendlySorting(driver)
-
